@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+    Huffman Algorithm Visualization
+    
+    Author: Valentin Barral
+    License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+    
+    Interactive web application to visualize the Huffman encoding algorithm step-by-step
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Valentin Barral">
+    <meta name="description" content="Interactive web application to visualize the Huffman encoding algorithm step-by-step">
+    <meta name="license" content="CC BY 4.0">
+    <title>Demostración del Algoritmo de Huffman</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div>
+                    <h1>🌳 Algoritmo de Huffman - Visualización Paso a Paso</h1>
+                    <p class="subtitle">Comprende cómo se construye el árbol de codificación óptima</p>
+                </div>
+                <div class="language-selector">
+                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
+                    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
+                    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Panel de Control -->
+            <div class="control-panel">
+                <div class="input-section">
+                    <h3>Datos de Entrada</h3>
+                    <div class="examples">
+                        <button class="btn btn-secondary" onclick="loadExample1()">Ejemplo 1</button>
+                        <button class="btn btn-secondary" onclick="loadExample2()">Ejemplo 2</button>
+                        <button class="btn btn-secondary" onclick="loadExample3()">Ejemplo 3</button>
+                    </div>
+                    <div class="custom-input">
+                        <label>Símbolos y Frecuencias (formato: a:0.5,b:0.3,c:0.2)</label>
+                        <textarea id="customInput" rows="3" placeholder="a:0.5,b:0.3,c:0.2"></textarea>
+                        <button class="btn btn-primary" onclick="loadCustomInput()">Cargar Datos</button>
+                    </div>
+                </div>
+
+                <!-- Tabla de Frecuencias -->
+                <div class="frequency-table-container">
+                    <h3>Tabla de Frecuencias</h3>
+                    <p class="order-note">📊 Ordenadas de menor a mayor frecuencia</p>
+                    <div id="frequencyTable" class="table-wrapper"></div>
+                </div>
+            </div>
+
+            <!-- Visualización del Árbol -->
+            <div class="visualization-panel">
+                <div class="canvas-container">
+                    <canvas id="treeCanvas" width="1600" height="2000"></canvas>
+                </div>
+                
+                <!-- Controles de Navegación -->
+                <div class="navigation-controls">
+                    <button class="btn btn-nav" id="firstBtn" onclick="goToFirst()">⏮️ Inicio</button>
+                    <button class="btn btn-nav" id="prevBtn" onclick="previousStep()">⏪ Anterior</button>
+                    <div class="step-indicator">
+                        <span id="currentStep">0</span> / <span id="totalSteps">0</span>
+                    </div>
+                    <button class="btn btn-nav" id="nextBtn" onclick="nextStep()">Siguiente ⏩</button>
+                    <button class="btn btn-nav" id="lastBtn" onclick="goToLast()">⏭️ Final</button>
+                </div>
+
+                <!-- Descripción del Paso Actual -->
+                <div class="step-description">
+                    <h3>Descripción del Paso</h3>
+                    <p id="stepDescription">🎬 Carga un ejemplo o datos personalizados para comenzar.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Valentin Barral | Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="huffman.js"></script>
+    <script src="visualization.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
