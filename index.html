@@ -21,15 +21,14 @@
     <div class="container">
         <header>
             <div class="header-content">
-                <div>
-                    <h1>🌳 Algoritmo de Huffman - Visualización Paso a Paso</h1>
-                    <p class="subtitle">Comprende cómo se construye el árbol de codificación óptima</p>
-                </div>
-                <div class="language-selector">
-                    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">English</button>
-                    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">Español</button>
-                    <button class="lang-btn" data-lang="gl" onclick="setLanguage('gl')">Galego</button>
-                </div>
+                <h1>Huffman demo</h1>
+            </div>
+            <div class="language-selector">
+                <select id="languageSelect" onchange="setLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="es" selected>Español</option>
+                    <option value="gl">Galego</option>
+                </select>
             </div>
         </header>
 
@@ -61,7 +60,7 @@
             <!-- Visualización del Árbol -->
             <div class="visualization-panel">
                 <div class="canvas-container">
-                    <canvas id="treeCanvas" width="1600" height="2000"></canvas>
+                    <canvas id="treeCanvas"></canvas>
                 </div>
                 
                 <!-- Controles de Navegación -->

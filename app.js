@@ -10,10 +10,49 @@ let steps = [];
 let currentStepIndex = 0;
 let visualizer = null;
 
+// Función para ajustar el tamaño del canvas
+function resizeCanvas() {
+    const canvas = document.getElementById('treeCanvas');
+    const container = canvas.parentElement;
+    
+    // Obtener el ancho del contenedor (sin padding)
+    const containerWidth = container.clientWidth - 40; // restamos el padding (20px * 2)
+    
+    // Calcular altura proporcional basada en el ancho
+    // Usar un ratio más razonable para evitar canvas excesivamente grandes
+    const canvasHeight = Math.max(1200, Math.min(2000, containerWidth * 1.5));
+    
+    // Establecer las dimensiones del canvas
+    canvas.width = containerWidth;
+    canvas.height = canvasHeight;
+    
+    // Actualizar dimensiones lógicas del visualizador si existe
+    if (visualizer) {
+        visualizer.logicalWidth = canvas.width;
+        visualizer.logicalHeight = canvas.height;
+        visualizer.setupHighDPICanvas();
+        
+        // Redibujar si hay datos cargados
+        if (steps && steps.length > 0) {
+            updateStepDisplay();
+        }
+    }
+}
+
 // Inicializar al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     visualizer = new TreeVisualizer('treeCanvas');
+    resizeCanvas();
     loadExample3(); // Cargar el ejemplo de la imagen por defecto
+});
+
+// Redimensionar cuando cambia el tamaño de la ventana (con debounce)
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        resizeCanvas();
+    }, 250);
 });
 
 // Ejemplos predefinidos

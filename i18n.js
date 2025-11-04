@@ -9,8 +9,7 @@
 const translations = {
     en: {
         // Header
-        title: "Huffman Algorithm - Step-by-Step Visualization",
-        subtitle: "Understand how the optimal coding tree is built",
+        title: "Huffman demo",
         
         // Input Section
         inputTitle: "Input Data",
@@ -69,8 +68,7 @@ const translations = {
     
     es: {
         // Header
-        title: "Algoritmo de Huffman - Visualización Paso a Paso",
-        subtitle: "Comprende cómo se construye el árbol de codificación óptima",
+        title: "Huffman demo",
         
         // Input Section
         inputTitle: "Datos de Entrada",
@@ -129,8 +127,7 @@ const translations = {
     
     gl: {
         // Header
-        title: "Algoritmo de Huffman - Visualización Paso a Paso",
-        subtitle: "Comprende como se constrúe a árbore de codificación óptima",
+        title: "Huffman demo",
         
         // Input Section
         inputTitle: "Datos de Entrada",
@@ -210,20 +207,20 @@ function setLanguage(lang) {
     localStorage.setItem('huffman-language', lang);
     updateUILanguage();
     
-    // Update language selector active state
-    document.querySelectorAll('.language-selector button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
+    // Update language selector value
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+        languageSelect.value = lang;
+    }
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
 }
 
-// Update all UI text elements
+    // Update all UI text elements
 function updateUILanguage() {
     // Header
-    document.querySelector('header h1').textContent = `🌳 ${t('title')}`;
-    document.querySelector('.subtitle').textContent = t('subtitle');
+    document.querySelector('header h1').textContent = t('title');
     
     // Input Section
     document.querySelector('.input-section h3').textContent = t('inputTitle');

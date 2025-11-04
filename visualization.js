@@ -47,7 +47,7 @@ class TreeVisualizer {
         // Todos los valores ajustables en un solo lugar
         this.config = {
             // Tamaños de nodos
-            nodeRadius: 50,
+            nodeRadius: 40,
             
             // Separación vertical entre niveles
             levelHeight: 140,

@@ -1,8 +1,8 @@
-# 🌳 Huffman Algorithm Demonstration
+# Huffman Algorithm Demonstration
 
 An interactive web application to visualize the Huffman encoding algorithm step-by-step.
 
-## 📋 Features
+## Features
 
 - **Step-by-Step Visualization**: Watch how the Huffman tree is built from initial nodes to the complete tree
 - **Navigation Controls**: Move forward, backward, or jump to any step of the algorithm
@@ -13,7 +13,7 @@ An interactive web application to visualize the Huffman encoding algorithm step-
 - **Keyboard Shortcuts**: Use arrow keys to navigate
 - **Multilingual Support**: Available in English, Spanish (Español), and Galician (Galego)
 
-## 🚀 How to Use
+## How to Use
 
 ### Opening the Application
 
@@ -46,10 +46,10 @@ Click any of the example buttons:
 ### Navigation
 
 #### Buttons
-- **⏮️ First**: Go to the first step
-- **⏪ Previous**: Go back one step
-- **⏩ Next**: Move forward one step
-- **⏭️ Last**: Go to the last step (complete tree)
+- **First**: Go to the first step
+- **Previous**: Go back one step
+- **Next**: Move forward one step
+- **Last**: Go to the last step (complete tree)
 
 #### Keyboard Shortcuts
 - `←` (Left Arrow): Previous step
@@ -66,7 +66,7 @@ Use the language selector in the top-right corner of the header to switch betwee
 
 Your language preference is saved automatically.
 
-## 📊 What the Application Shows
+## What the Application Shows
 
 ### Left Panel: Control and Frequencies
 - Buttons to load examples
@@ -87,25 +87,25 @@ Your language preference is saved automatically.
 - **Navigation Controls**: To move between steps
 - **Description**: Explains what happens at each step
 
-## 🎨 Color Coding and Icons
+## Color Coding and Icons
 
 ### Node Colors
-- 🟣 **Purple**: Leaf nodes (original symbols)
-- ⚫ **Dark Gray**: Internal nodes (combinations)
-- 🟣 **Pink**: Nodes highlighted in the current step
-- 🟡 **Yellow**: Border of active nodes
-- 🟢 **Green**: Edge labels (0 and 1)
-- 🔵 **Blue**: Left edges (code 0)
-- 🔴 **Pink**: Right edges (code 1)
+- **Purple**: Leaf nodes (original symbols)
+- **Dark Gray**: Internal nodes (combinations)
+- **Pink**: Nodes highlighted in the current step
+- **Yellow**: Border of active nodes
+- **Green**: Edge labels (0 and 1)
+- **Blue**: Left edges (code 0)
+- **Pink**: Right edges (code 1)
 
 ### Step Icons
-- 🎬 **Initial Step**: Initial state with all symbols ordered
-- 👉 **Mark (N.1)**: The two nodes with lowest weight are marked
-- 🔗 **Merge (N.2)**: The marked nodes merge in place, creating a new node
-- ⬇️ **Reorder (N.3)**: The new node moves to its correct position according to its frequency
-- ✅ **Final Step**: Completed Huffman tree with assigned codes
+- **Initial Step**: Initial state with all symbols ordered
+- **Mark (N.1)**: The two nodes with lowest weight are marked
+- **Merge (N.2)**: The marked nodes merge in place, creating a new node
+- **Reorder (N.3)**: The new node moves to its correct position according to its frequency
+- **Final Step**: Completed Huffman tree with assigned codes
 
-## 🧮 The Huffman Algorithm
+## The Huffman Algorithm
 
 ### Algorithm Steps
 
@@ -125,7 +125,7 @@ Your language preference is saved automatically.
 - **Prefix-Free**: No code is a prefix of another
 - **Frequency-Based**: Frequent symbols get shorter codes
 
-## 📊 Understanding Statistics
+## Understanding Statistics
 
 The final step displays four key statistics:
 
@@ -156,7 +156,7 @@ The final step displays four key statistics:
   - **0%**: No gain (uncommon)
   - **Negative**: Huffman uses more space (very rare, only with uniform distributions)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 huffman-demo/
@@ -169,14 +169,14 @@ huffman-demo/
 └── README.md          # This documentation
 ```
 
-## 🛠️ Technologies
+## Technologies
 
 - **HTML5**: Semantic structure
 - **CSS3**: Modern design with gradients and animations
 - **JavaScript (ES6+)**: Algorithm logic and visualization
 - **Canvas API**: Tree rendering with high-resolution screen support (HiDPI/Retina)
 
-## ⚙️ Customization
+## Customization
 
 ### Adjusting Sizes and Spacing
 
@@ -224,7 +224,7 @@ Colors are defined using CSS variables in `styles.css` (lines 20-34):
 
 **Advantage**: Colors defined in CSS apply automatically without needing to reload JavaScript.
 
-## 📚 Huffman Algorithm Applications
+## Huffman Algorithm Applications
 
 - File compression (ZIP, GZIP)
 - Image formats (JPEG, PNG)
@@ -232,7 +232,7 @@ Colors are defined using CSS variables in `styles.css` (lines 20-34):
 - Video streaming
 - Data compression algorithms
 
-## 🎓 Educational Use
+## Educational Use
 
 This tool is ideal for:
 - Data structures courses
@@ -241,11 +241,11 @@ This tool is ideal for:
 - Data compression
 - Self-learning
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to modify and improve the code according to your needs.
 
-## 📝 License
+## License
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
