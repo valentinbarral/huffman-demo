@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Huffman Algorithm Visualization
-    
-    Author: Valentin Barral
-    License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-    
-    Interactive web application to visualize the Huffman encoding algorithm step-by-step
--->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -18,74 +10,68 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Huffman demo</h1>
-            </div>
-            <div class="language-selector">
-                <select id="languageSelect" onchange="setLanguage(this.value)">
-                    <option value="en">English</option>
-                    <option value="es" selected>Español</option>
-                    <option value="gl">Galego</option>
-                </select>
-            </div>
-        </header>
+    <header>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">☰</button>
+        <h1 data-i18n="title">Huffman demo</h1>
+        <nav class="header-controls" id="headerControls">
+            <button class="theme-btn" onclick="toggleTheme()">🌓</button>
+            <select class="lang-sel" onchange="changeLang(this.value)" id="langSelect">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="gl">Galego</option>
+            </select>
+        </nav>
+    </header>
 
+    <div class="container">
         <div class="main-content">
-            <!-- Panel de Control -->
             <div class="control-panel">
                 <div class="input-section">
-                    <h3>Datos de Entrada</h3>
+                    <h3 data-i18n="inputTitle">Datos de Entrada</h3>
                     <div class="examples">
-                        <button class="btn btn-secondary" onclick="loadExample1()">Ejemplo 1</button>
-                        <button class="btn btn-secondary" onclick="loadExample2()">Ejemplo 2</button>
-                        <button class="btn btn-secondary" onclick="loadExample3()">Ejemplo 3</button>
+                        <button class="btn btn-secondary" onclick="loadExample1()" data-i18n="example1">Ejemplo 1</button>
+                        <button class="btn btn-secondary" onclick="loadExample2()" data-i18n="example2">Ejemplo 2</button>
+                        <button class="btn btn-secondary" onclick="loadExample3()" data-i18n="example3">Ejemplo 3</button>
                     </div>
                     <div class="custom-input">
-                        <label>Símbolos y Frecuencias (formato: a:0.5,b:0.3,c:0.2)</label>
-                        <textarea id="customInput" rows="3" placeholder="a:0.5,b:0.3,c:0.2"></textarea>
-                        <button class="btn btn-primary" onclick="loadCustomInput()">Cargar Datos</button>
+                        <label data-i18n="customInputLabel">Símbolos y Frecuencias (formato: a:0.5,b:0.3,c:0.2)</label>
+                        <textarea id="customInput" rows="3" data-i18n-placeholder="customInputPlaceholder" placeholder="a:0.5,b:0.3,c:0.2"></textarea>
+                        <button class="btn btn-primary" onclick="loadCustomInput()" data-i18n="loadDataButton">Cargar Datos</button>
                     </div>
                 </div>
 
-                <!-- Tabla de Frecuencias -->
                 <div class="frequency-table-container">
-                    <h3>Tabla de Frecuencias</h3>
-                    <p class="order-note">📊 Ordenadas de menor a mayor frecuencia</p>
+                    <h3 data-i18n="frequencyTableTitle">Tabla de Frecuencias</h3>
+                    <p class="order-note" data-i18n="frequencyTableNote">📊 Ordenadas de menor a mayor frecuencia</p>
                     <div id="frequencyTable" class="table-wrapper"></div>
                 </div>
             </div>
 
-            <!-- Visualización del Árbol -->
             <div class="visualization-panel">
                 <div class="canvas-container">
                     <canvas id="treeCanvas"></canvas>
                 </div>
-                
-                <!-- Controles de Navegación -->
+
                 <div class="navigation-controls">
-                    <button class="btn btn-nav" id="firstBtn" onclick="goToFirst()">⏮️ Inicio</button>
-                    <button class="btn btn-nav" id="prevBtn" onclick="previousStep()">⏪ Anterior</button>
+                    <button class="btn btn-nav" id="firstBtn" onclick="goToFirst()" data-i18n="firstButton">⏮️ Inicio</button>
+                    <button class="btn btn-nav" id="prevBtn" onclick="previousStep()" data-i18n="prevButton">⏪ Anterior</button>
                     <div class="step-indicator">
                         <span id="currentStep">0</span> / <span id="totalSteps">0</span>
                     </div>
-                    <button class="btn btn-nav" id="nextBtn" onclick="nextStep()">Siguiente ⏩</button>
-                    <button class="btn btn-nav" id="lastBtn" onclick="goToLast()">⏭️ Final</button>
+                    <button class="btn btn-nav" id="nextBtn" onclick="nextStep()" data-i18n="nextButton">Siguiente ⏩</button>
+                    <button class="btn btn-nav" id="lastBtn" onclick="goToLast()" data-i18n="lastButton">⏭️ Final</button>
                 </div>
 
-                <!-- Descripción del Paso Actual -->
                 <div class="step-description">
-                    <h3>Descripción del Paso</h3>
-                    <p id="stepDescription">🎬 Carga un ejemplo o datos personalizados para comenzar.</p>
+                    <h3 data-i18n="stepDescriptionTitle">Descripción del Paso</h3>
+                    <p id="stepDescription" data-i18n="initialDescription">🎬 Carga un ejemplo o datos personalizados para comenzar.</p>
                 </div>
             </div>
-
         </div>
     </div>
 
     <footer>
-        <p>© 2025 Valentin Barral | Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+        <p data-i18n-html="footerText"></p>
     </footer>
 
     <script src="i18n.js"></script>
@@ -94,4 +80,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-

@@ -140,7 +140,12 @@ class TreeVisualizer {
             edgeLabel: styles.getPropertyValue('--edge-label-color').trim() || '#10b981',
             edgeLabelBg: styles.getPropertyValue('--card-bg').trim() || '#1e293b',
             background: styles.getPropertyValue('--bg-color').trim() || '#0f172a',
-            arrowColor: styles.getPropertyValue('--primary-color').trim() || '#6366f1'
+            arrowColor: styles.getPropertyValue('--primary-color').trim() || '#6366f1',
+            canvasLabelBg: styles.getPropertyValue('--canvas-label-bg').trim() || 'rgba(255,255,255,0.95)',
+            canvasTableBg: styles.getPropertyValue('--canvas-table-bg').trim() || 'rgba(255,255,255,0.98)',
+            canvasBg: styles.getPropertyValue('--canvas-bg').trim() || '#f8fafc',
+            fontBody: styles.getPropertyValue('--font-body').trim() || 'system-ui, sans-serif',
+            fontMono: styles.getPropertyValue('--font-mono').trim() || 'Courier New, monospace'
         };
     }
 
@@ -175,7 +180,7 @@ class TreeVisualizer {
 
     drawEmptyState() {
         this.ctx.fillStyle = this.colors.textSecondary;
-        this.ctx.font = '18px Segoe UI';
+        this.ctx.font = `18px ${this.colors.fontBody}`;
         this.ctx.textAlign = 'center';
         this.ctx.fillText(
             'El árbol se mostrará aquí',
@@ -268,16 +273,13 @@ class TreeVisualizer {
         const labelSize = Math.max(20, Math.floor(this.config.nodeRadius * this.config.edgeLabelSize));
         const boxSize = labelSize + 12;
         
-        this.ctx.fillStyle = this.colors.edgeLabel;
-        this.ctx.font = `bold ${labelSize}px Courier New`;
+        this.ctx.font = `bold ${labelSize}px ${this.colors.fontMono}`;
         this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'middle';
         
-        // Fondo blanco para tema claro
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        this.ctx.fillStyle = this.colors.canvasLabelBg;
         this.ctx.fillRect(x - boxSize/2, y - boxSize/2, boxSize, boxSize);
         
-        // Borde para mejor definición
         this.ctx.strokeStyle = this.colors.edgeLabel;
         this.ctx.lineWidth = 2;
         this.ctx.strokeRect(x - boxSize/2, y - boxSize/2, boxSize, boxSize);
@@ -325,21 +327,21 @@ class TreeVisualizer {
         if (node.isLeaf()) {
             // Nodo hoja: mostrar símbolo siempre
             const fontSize = Math.floor(nodeRadius * this.config.leafSymbolSize);
-            this.ctx.font = `bold ${fontSize}px Segoe UI`;
+            this.ctx.font = `bold ${fontSize}px ${this.colors.fontBody}`;
             const symbolY = level === 0 ? pos.y - Math.floor(nodeRadius * 0.1) : pos.y;
             this.ctx.fillText(node.symbol, pos.x, symbolY);
             
             // Mostrar frecuencia solo en nivel 0
             if (level === 0) {
                 const freqFontSize = Math.floor(nodeRadius * this.config.frequencySize);
-                this.ctx.font = `bold ${freqFontSize}px Segoe UI`;
+                this.ctx.font = `bold ${freqFontSize}px ${this.colors.fontBody}`;
                 this.ctx.fillText(node.frequency.toFixed(3), pos.x, pos.y + Math.floor(nodeRadius * this.config.frequencySize));
             }
         } else {
             // Nodo interno (fusionado): solo mostrar frecuencia en nivel 0, nada en otros niveles
             if (level === 0) {
                 const freqFontSize = Math.floor(nodeRadius * this.config.frequencySize);
-                this.ctx.font = `bold ${freqFontSize}px Segoe UI`;
+                this.ctx.font = `bold ${freqFontSize}px ${this.colors.fontBody}`;
                 this.ctx.fillText(node.frequency.toFixed(3), pos.x, pos.y);
             }
             // En nivel > 0 no se muestra nada
@@ -387,7 +389,7 @@ class TreeVisualizer {
 
         // Dibujar indicador de orden (frecuencias crecientes)
         this.ctx.fillStyle = this.colors.textSecondary;
-        this.ctx.font = 'italic 14px Segoe UI';
+        this.ctx.font = `italic 14px ${this.colors.fontBody}`;
         this.ctx.textAlign = 'left';
         this.ctx.fillText('← Menor frecuencia', 20, height - 20);
         this.ctx.textAlign = 'right';
@@ -509,21 +511,21 @@ class TreeVisualizer {
         if (node.isLeaf()) {
             // Nodo hoja: mostrar símbolo siempre
             const fontSize = Math.floor(nodeRadius * this.config.leafSymbolSize);
-            this.ctx.font = `bold ${fontSize}px Segoe UI`;
+            this.ctx.font = `bold ${fontSize}px ${this.colors.fontBody}`;
             const symbolY = level === 0 ? y - Math.floor(nodeRadius * 0.1) : y;
             this.ctx.fillText(node.symbol, x, symbolY);
             
             // Mostrar frecuencia solo en nivel 0
             if (level === 0) {
                 const freqFontSize = Math.floor(nodeRadius * this.config.frequencySize);
-                this.ctx.font = `bold ${freqFontSize}px Segoe UI`;
+                this.ctx.font = `bold ${freqFontSize}px ${this.colors.fontBody}`;
                 this.ctx.fillText(node.frequency.toFixed(3), x, y + Math.floor(nodeRadius * this.config.frequencySize));
             }
         } else {
             // Nodo interno (fusionado): solo mostrar frecuencia en nivel 0, nada en otros niveles
             if (level === 0) {
                 const freqFontSize = Math.floor(nodeRadius * this.config.frequencySize);
-                this.ctx.font = `bold ${freqFontSize}px Segoe UI`;
+                this.ctx.font = `bold ${freqFontSize}px ${this.colors.fontBody}`;
                 this.ctx.fillText(node.frequency.toFixed(3), x, y);
             }
             // En nivel > 0 no se muestra nada
@@ -534,16 +536,13 @@ class TreeVisualizer {
         const labelSize = Math.max(18, Math.floor(this.config.nodeRadius * this.config.smallEdgeLabelSize));
         const boxSize = labelSize + 10;
         
-        this.ctx.fillStyle = this.colors.edgeLabel;
-        this.ctx.font = `bold ${labelSize}px Courier New`;
+        this.ctx.font = `bold ${labelSize}px ${this.colors.fontMono}`;
         this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'middle';
         
-        // Fondo blanco para tema claro
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+        this.ctx.fillStyle = this.colors.canvasLabelBg;
         this.ctx.fillRect(x - boxSize/2, y - boxSize/2, boxSize, boxSize);
         
-        // Borde para mejor definición
         this.ctx.strokeStyle = this.colors.edgeLabel;
         this.ctx.lineWidth = 2;
         this.ctx.strokeRect(x - boxSize/2, y - boxSize/2, boxSize, boxSize);
@@ -572,8 +571,7 @@ class TreeVisualizer {
         const x = this.logicalWidth - tableWidth - padding;
         const y = padding;
         
-        // Fondo blanco con sombra para tema claro
-        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.98)';
+        this.ctx.fillStyle = this.colors.canvasTableBg;
         this.ctx.strokeStyle = this.colors.nodeBorder;
         this.ctx.lineWidth = 2;
         this.ctx.beginPath();
@@ -583,14 +581,14 @@ class TreeVisualizer {
         
         // Título
         this.ctx.fillStyle = this.colors.textPrimary;
-        this.ctx.font = 'bold 18px Segoe UI';
+        this.ctx.font = `bold 18px ${this.colors.fontBody}`;
         this.ctx.textAlign = 'left';
         this.ctx.fillText('📊 ' + t('codesTableTitle'), x + 15, y + 25);
         
         // Encabezados de la tabla
         let currentY = y + headerHeight + 15;
         this.ctx.fillStyle = this.colors.textSecondary;
-        this.ctx.font = 'bold 14px Segoe UI';
+        this.ctx.font = `bold 14px ${this.colors.fontBody}`;
         this.ctx.fillText(t('codeSymbolHeader'), x + 20, currentY);
         this.ctx.fillText(t('codeCodeHeader'), x + 95, currentY);
         this.ctx.fillText(t('codeLengthHeader'), x + 260, currentY);
@@ -606,19 +604,19 @@ class TreeVisualizer {
         
         // Filas de códigos
         currentY += 10;
-        this.ctx.font = '14px Courier New';
+        this.ctx.font = `14px ${this.colors.fontMono}`;
         sortedCodes.forEach(([symbol, code]) => {
             currentY += rowHeight;
             
             // Símbolo
             this.ctx.fillStyle = this.colors.textPrimary;
-            this.ctx.font = 'bold 16px Segoe UI';
+            this.ctx.font = `bold 16px ${this.colors.fontBody}`;
             this.ctx.textAlign = 'left';
             this.ctx.fillText(symbol, x + 30, currentY);
             
             // Código - recortar si es muy largo
             this.ctx.fillStyle = this.colors.edgeLabel;
-            this.ctx.font = 'bold 13px Courier New';
+            this.ctx.font = `bold 13px ${this.colors.fontMono}`;
             this.ctx.textAlign = 'left';
             const maxCodeWidth = 150;  // Ancho máximo para el código
             let displayCode = code;
@@ -635,7 +633,7 @@ class TreeVisualizer {
             
             // Longitud
             this.ctx.fillStyle = this.colors.textSecondary;
-            this.ctx.font = '14px Segoe UI';
+            this.ctx.font = `14px ${this.colors.fontBody}`;
             this.ctx.textAlign = 'left';
             this.ctx.fillText(code.length.toString(), x + 270, currentY);
         });
@@ -653,44 +651,44 @@ class TreeVisualizer {
             this.ctx.stroke();
             
             currentY += 20;
-            this.ctx.font = '13px Segoe UI';
+            this.ctx.font = `13px ${this.colors.fontBody}`;
             this.ctx.textAlign = 'left';
             
             // Long. promedio
             this.ctx.fillStyle = this.colors.textSecondary;
             this.ctx.fillText(t('avgLengthLabel'), x + 20, currentY);
             this.ctx.fillStyle = this.colors.textPrimary;
-            this.ctx.font = 'bold 13px Segoe UI';
+            this.ctx.font = `bold 13px ${this.colors.fontBody}`;
             this.ctx.fillText(`${stats.avgLength} ${t('bitsUnit')}`, x + 165, currentY);
             
             currentY += 22;
-            this.ctx.font = '13px Segoe UI';
+            this.ctx.font = `13px ${this.colors.fontBody}`;
             
             // Entropía
             this.ctx.fillStyle = this.colors.textSecondary;
             this.ctx.fillText(t('entropyLabel'), x + 20, currentY);
             this.ctx.fillStyle = this.colors.textPrimary;
-            this.ctx.font = 'bold 13px Segoe UI';
+            this.ctx.font = `bold 13px ${this.colors.fontBody}`;
             this.ctx.fillText(`${stats.entropy} ${t('bitsUnit')}`, x + 165, currentY);
             
             currentY += 22;
-            this.ctx.font = '13px Segoe UI';
+            this.ctx.font = `13px ${this.colors.fontBody}`;
             
             // Eficiencia
             this.ctx.fillStyle = this.colors.textSecondary;
             this.ctx.fillText(t('efficiencyLabel'), x + 20, currentY);
             this.ctx.fillStyle = this.colors.textPrimary;
-            this.ctx.font = 'bold 13px Segoe UI';
+            this.ctx.font = `bold 13px ${this.colors.fontBody}`;
             this.ctx.fillText(`${stats.efficiency}%`, x + 165, currentY);
             
             currentY += 22;
-            this.ctx.font = '13px Segoe UI';
+            this.ctx.font = `13px ${this.colors.fontBody}`;
             
             // Compresión
             this.ctx.fillStyle = this.colors.textSecondary;
             this.ctx.fillText(t('compressionLabel'), x + 20, currentY);
             this.ctx.fillStyle = this.colors.textPrimary;
-            this.ctx.font = 'bold 13px Segoe UI';
+            this.ctx.font = `bold 13px ${this.colors.fontBody}`;
             this.ctx.fillText(`${stats.compression}%`, x + 165, currentY);
         }
     }
